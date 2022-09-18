@@ -10,12 +10,17 @@ variable "flavor" {
 */
 
 resource "aws_instance" "instance1" {
-    ami = "ami-09e2d756e7d78558d"
+    ami = var.amis.amazon
     instance_type = var.flavor
     subnet_id = "subnet-08910a259664677d9"
     tags = {
         "Name" = "first_instance"
+        "Environment" = var.environment[1]
     }
-    ebs_optimized = var.ebs_opt
-    cpu_core_count = var.core_count
+    #ebs_optimized = var.ebs_opt
+    #cpu_core_count = var.core_count
+}
+
+output "instance_public_IP" {
+    value = aws_instance.instance1.public_ip
 }
