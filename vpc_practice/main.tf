@@ -1,5 +1,5 @@
 provider "aws" {
-    region = "eu-west-1"
+    region = var.aws_region
 }
 
 resource "aws_vpc" "vpc1" {
